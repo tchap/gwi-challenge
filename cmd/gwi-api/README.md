@@ -44,7 +44,8 @@ There are a few test files, namely:
 * `api/api_integration_test.go` for some integration tests.
 # `api/stores/postgrestore/store_test.go` for unit tests for the Postgres store.
 
-Once started, the service can be tested from outside somehow using `test.bash`
+Once started (`docker-compose run --service-ports api`),
+the service can be tested from outside somehow using `test.bash`
 (no other black box testing implemented currently).
 Please make sure you have `jq` installed before running the script.
 The script itself just uses `curl` to call all APIs available and print results.
