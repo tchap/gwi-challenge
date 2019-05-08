@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  api:
+    build: .
+    depends_on:
+      - postgres
+    expose:
+      - '8888'
+    ports:
+      - '8888:8888'
+    environment:
+      - GWI_ENTRYPOINT_PERFORM_DB_MIGRATION=true
+      - GWI_API_STATS_USERNAME=admin
+      - GWI_API_STATS_PASSWORD=secret
+      - GWI_API_JWT_SECRET=Le,R3Fe5dClLRrQO7&bh7EMjmX]f9>_l=x,aj~@Gs9$_3O_~wNeSi@h<MjNl^]a
+      - GWI_API_DB_URL=postgres://gwi:gwi@postgres/gwi?sslmode=disable
+      - GWI_API_DEBUG_ENABLED=true
+
+  postgres:
+    build: ./docker_images/postgres
