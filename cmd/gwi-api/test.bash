@@ -2,9 +2,17 @@
 
 EMAIL='me@example.com'
 PASSWORD='secret'
-BASE_URL='localhost:8888/v1'
+HOST='localhost'
+PORT='8888'
+BASE_URL="${HOST}:${PORT}/v1"
 VOLUNTEERS="$BASE_URL/volunteers"
 TEAMS="$BASE_URL/teams"
+
+echo "---> Waiting for the API to become available..."
+
+while ! nc -z "$HOST" "$PORT"; do
+  sleep 0.1
+done
 
 function get() {
     token="$1"

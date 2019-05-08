@@ -10,6 +10,8 @@ but there is also a Dockerfile available, which contains everything needed.
 Last but not least, there is a Docker Compose file that can be used
 to build and run the API backed by Postgres without much effort.
 
+Run `make build` to build the executable.
+
 ## Usage
 
 The API is a backend service. It must be configured properly
@@ -49,6 +51,8 @@ the service can be tested from outside somehow using `test.bash`
 (no other black box testing implemented currently).
 Please make sure you have `jq` installed before running the script.
 The script itself just uses `curl` to call all APIs available and print results.
+
+Run `make test` to run the tests or `make example` to run `test.bash`.
 
 ## Design (Bits and Pieces)
 

@@ -28,11 +28,15 @@ import (
 	"gopkg.in/urfave/cli.v1"
 )
 
+// BuildVersion is set at compile time.
+// In contains the current build version.
+var BuildVersion = "UNSET"
+
 func main() {
 	app := cli.NewApp()
 	app.Name = "gwi-api"
 	app.Usage = "gwi-api service executable"
-	app.Version = "1.0.0"
+	app.Version = BuildVersion
 	app.Action = run
 
 	app.Commands = []cli.Command{

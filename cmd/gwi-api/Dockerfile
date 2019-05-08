@@ -1,6 +1,10 @@
 # Builder stage to build statically-linked Go executable
 FROM golang:1.12-alpine AS builder
 
+# Add build number from the outside.
+# This is added to the resulting executable.
+ARG BUILD_NUMBER=UNSET
+
 # Install git to be able to fetch dependencies.
 RUN apk update && apk add --no-cache git
 
@@ -16,7 +20,7 @@ COPY . .
 
 # Compute the executable, make sure cgo is disabled
 # since that would precent statically-linked executable.
-RUN CGO_ENABLED=0 go build -o /gwi-api
+RUN CGO_ENABLED=0 go build -ldflags="-X main.BuildVersion=${BUILD_NUMBER}" -o /gwi-api
 
 # It would be nice to use FROM scratch,
 # but we need /bin/sh to run entrypoint.sh
